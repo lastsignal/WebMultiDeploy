@@ -74,19 +74,7 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <Target Name="AfterBuild">
-    <exec Command="&quot;$(MSBuildBinPath)\msbuild.exe&quot; &quot;$(SolutionDir)WebMultiDeploy\WebMultiDeploy.csproj&quot; /p:DeployOnBuild=true /p:PublishProfile=Debug ">
-      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
-    </exec>
-    <exec Command="&quot;$(MSBuildBinPath)\msbuild.exe&quot; &quot;$(SolutionDir)WebMultiDeploy\WebMultiDeploy.csproj&quot; /p:DeployOnBuild=true /p:PublishProfile=Release ">
-      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
-    </exec>
-  </Target>
+  <PropertyGroup>
+    <PreBuildEvent>"$(MSBuildBinPath)\msbuild.exe" "$(SolutionDir)TestPrequisite\Build.proj"</PreBuildEvent>
+  </PropertyGroup>
 </Project>
